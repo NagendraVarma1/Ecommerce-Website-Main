@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <Navbar style={{position: 'sticky', top: '0'}} bg='dark' expand='sm' variant='dark' className='shadow-lg' >
             <Container fluid>
@@ -10,7 +10,7 @@ const NavBar = () => {
                     <Nav.Link href='/' className='mx-3 text-light'>Store</Nav.Link>
                     <Nav.Link href='/' className='mx-3 text-light'>About</Nav.Link>
                 </Nav>
-                <Button variant='outline-primary' className='text-light'>Cart</Button>
+                <Button variant='outline-primary' className='text-light' onClick={props.onCartClick}>Cart</Button>
             </Container>
             <h5 className='text-primary'>0</h5>
         </Navbar>
