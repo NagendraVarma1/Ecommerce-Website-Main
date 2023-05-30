@@ -1,10 +1,17 @@
 import React, { useState } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
 import Header from "./Components/Header/Header";
 import ProductList from "./Components/ProductList/ProductList";
 import Footer from "./Components/Footer/Footer";
 import Cart from "./Components/Cart/Cart";
 import CartProvider from "./Store/CartContext/CartProvider";
+import About from "./Components/About/About";
+
+const router = createBrowserRouter([
+  {path: '/', element: <ProductList />},
+  {path: '/about', element: <About />}
+])
 
 const App = () => {
 
@@ -24,7 +31,7 @@ const App = () => {
       {cartEnable && <Cart onCloseClick={cartCloseHandler}/>}
       <NavBar onCartClick={cartEnableHandler} />
       <Header />
-      <ProductList />
+      <RouterProvider router={router} />
       <Footer />
     </CartProvider>
   );
