@@ -12,7 +12,7 @@ const NavBar = (props) => {
                 </Nav>
                 <Button variant='outline-primary' className='text-light' onClick={props.onCartClick}>Cart</Button>
             </Container>
-            <h5 className='text-primary'>0</h5>
+            <h5 className='text-primary'>{props.quantity}</h5>
         </Navbar>
     )
 }

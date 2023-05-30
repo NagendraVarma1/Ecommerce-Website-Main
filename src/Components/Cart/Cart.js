@@ -1,50 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import QuantityForm from "../QuantityForm/QuantityForm";
 import Modal from "../UI/Modal/Modal";
+import CartContext from "../../Store/CartContext/cart-context";
 
 const Cart = (props) => {
-  const cartElements = [
-    {
-      title: "Colors",
 
-      price: 100,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-      quantity: 2,
-    },
-
-    {
-      title: "Black and white Colors",
-
-      price: 50,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-      quantity: 3,
-    },
-
-    {
-      title: "Yellow and Black Colors",
-
-      price: 70,
-
-      imageUrl:
-        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-      quantity: 1,
-    },
-  ];
-  const [cartItems, setCartItems] = useState(cartElements);
-
+  const cartCtx = useContext(CartContext)
+  
   const removeItemHandler = (item) => {
-    let updatedItems = cartItems.filter(
-      (cartItem) => cartItem.title !== item.title
-    );
-    setCartItems(updatedItems);
+    cartCtx.removeCartItems(item)
   };
 
   let totalAmount = 0;
@@ -57,8 +22,8 @@ const Cart = (props) => {
           <Button onClick={props.onCloseClick}>x</Button>
         </Container>
         <ul className="list-unstyle">
-          {cartItems.map((item) => {
-            totalAmount = totalAmount + Number(item.price)
+          {cartCtx.cartItems.map((item) => {
+            totalAmount = totalAmount + ( Number(item.price) * Number(item.quantity))
             return (
             <li
               key={item.title}
@@ -91,7 +56,7 @@ const Cart = (props) => {
                   justifyContent: "space-between",
                 }}
               >
-                <QuantityForm />
+                <QuantityForm itemQuantity={item.quantity}/>
                 <Button
                   variant="warning"
                   className="my-3"

@@ -1,13 +1,11 @@
 import React from "react";
-import { Form } from "react-bootstrap";
 
-const QuantityForm = () => {
+const QuantityForm = (props) => {
+    
     return (
-        <Form>
-            <Form.Group className="p-3" >
-                <Form.Control type="number" style={{width: '50px'}} defaultValue={1}/>
-            </Form.Group>
-        </Form>
+        <div className="my-2 px-3 py-2" style={{border: '2px solid rgb(29, 50, 245)',borderRadius: '3px', width: '45px', height: '45px', textAlign:'center'}}>
+            <h1 style={{fontSize: 'large'}}>{props.itemQuantity}</h1>
+        </div>
     )
 }
 

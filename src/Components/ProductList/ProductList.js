@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, Container } from "react-bootstrap";
+import CartContext from "../../Store/CartContext/cart-context";
 
-const ProductList = () => {
+const ProductList = (props) => {
   const productsArr = [
     {
       title: "Colors",
@@ -39,6 +40,15 @@ const ProductList = () => {
         "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     },
   ];
+
+  const cartCtx = useContext(CartContext);
+
+  const cartItemHandler = (product) => {
+    cartCtx.addCartItems(product);
+    props.getQuantity();
+  }
+
+  
   return (
     <Container className="text-center">
       <ul className="list-unstyled">
@@ -58,7 +68,7 @@ const ProductList = () => {
               }}
             >
               <p>${product.price}</p>
-              <Button>Add To Cart</Button>
+              <Button onClick={() => cartItemHandler(product)}>Add To Cart</Button>
             </Container>
           </li>
         ))}
