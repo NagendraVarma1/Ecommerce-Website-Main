@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Button, Container } from "react-bootstrap";
 import CartContext from "../../Store/CartContext/cart-context";
+import Header from "../Header/Header";
 
 const ProductList = (props) => {
   const productsArr = [
@@ -45,35 +46,36 @@ const ProductList = (props) => {
 
   const cartItemHandler = (product) => {
     cartCtx.addCartItems(product);
-  }
+  };
 
-  
   return (
-    <Container className="text-center">
-      <ul className="list-unstyled">
-        {productsArr.map((product) => (
-          <li
-            key={product.title}
-            className="my-3 py-3"
-          >
-            <h2>{product.title}</h2>
-            <img src={product.imageUrl} alt="Product" />
-            <Container
-            className="mt-3"
-              style={{
-                width: "50%",
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <p>${product.price}</p>
-              <Button onClick={() => cartItemHandler(product)}>Add To Cart</Button>
-            </Container>
-          </li>
-        ))}
-      </ul>
-      <Button className="btn btn-secondary">See the Cart</Button>
-    </Container>
+    <>
+      <Header />
+      <Container className="text-center">
+        <ul className="list-unstyled">
+          {productsArr.map((product) => (
+            <li key={product.title} className="my-3 py-3">
+              <h2>{product.title}</h2>
+              <img src={product.imageUrl} alt="Product" />
+              <Container
+                className="mt-3"
+                style={{
+                  width: "50%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <p>${product.price}</p>
+                <Button onClick={() => cartItemHandler(product)}>
+                  Add To Cart
+                </Button>
+              </Container>
+            </li>
+          ))}
+        </ul>
+        <Button className="btn btn-secondary">See the Cart</Button>
+      </Container>
+    </>
   );
 };
 

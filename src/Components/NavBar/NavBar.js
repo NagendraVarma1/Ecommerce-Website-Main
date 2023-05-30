@@ -14,7 +14,7 @@ const NavBar = (props) => {
         <Navbar style={{position: 'sticky', top: '0'}} bg='dark' expand='sm' variant='dark' className='shadow-lg' >
             <Container fluid className='justify-content-center'>
                 <Nav className='mx-sm-5 text-center' style={{fontSize: 'large'}}>
-                    <Nav.Link href='/' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Home</Nav.Link>
+                    <Nav.Link href='/home' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Home</Nav.Link>
                     <Nav.Link href='/' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Store</Nav.Link>
                     <Nav.Link href='/about' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>About</Nav.Link>
                 </Nav>

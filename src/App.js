@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NavBar from "./Components/NavBar/NavBar";
-import Header from "./Components/Header/Header";
 import ProductList from "./Components/ProductList/ProductList";
 import Footer from "./Components/Footer/Footer";
 import Cart from "./Components/Cart/Cart";
 import CartProvider from "./Store/CartContext/CartProvider";
 import About from "./Components/About/About";
+import Home from "./Components/Home/Home";
 
 const router = createBrowserRouter([
   {path: '/', element: <ProductList />},
-  {path: '/about', element: <About />}
+  {path: '/about', element: <About />},
+  {path: '/home', element: <Home /> }
 ])
 
 const App = () => {
@@ -30,7 +31,6 @@ const App = () => {
     <CartProvider>
       {cartEnable && <Cart onCloseClick={cartCloseHandler}/>}
       <NavBar onCartClick={cartEnableHandler} />
-      <Header />
       <RouterProvider router={router} />
       <Footer />
     </CartProvider>
