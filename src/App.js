@@ -9,7 +9,7 @@ import CartProvider from "./Store/CartContext/CartProvider";
 const App = () => {
 
   const [cartEnable, setCartEnable] = useState(false)
-  const [cartItemQuantity, setCartItemQuantity] = useState(0)
+
 
   const cartEnableHandler = () => {
     setCartEnable(true)
@@ -19,17 +19,12 @@ const App = () => {
     setCartEnable(false)
   }
 
-  
-  const totalQuantityHandler = () => {
-    setCartItemQuantity(cartItemQuantity + 1)
-  }
-  
   return (
     <CartProvider>
       {cartEnable && <Cart onCloseClick={cartCloseHandler}/>}
-      <NavBar onCartClick={cartEnableHandler} quantity={cartItemQuantity}/>
+      <NavBar onCartClick={cartEnableHandler} />
       <Header />
-      <ProductList getQuantity={totalQuantityHandler}/>
+      <ProductList />
       <Footer />
     </CartProvider>
   );

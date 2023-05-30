@@ -45,7 +45,6 @@ const ProductList = (props) => {
 
   const cartItemHandler = (product) => {
     cartCtx.addCartItems(product);
-    props.getQuantity();
   }
 
   
