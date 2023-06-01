@@ -7,11 +7,13 @@ import Cart from "./Components/Cart/Cart";
 import CartProvider from "./Store/CartContext/CartProvider";
 import About from "./Components/About/About";
 import Home from "./Components/Home/Home";
+import Contact from "./Components/Contact/Contact";
 
 const router = createBrowserRouter([
   {path: '/', element: <ProductList />},
   {path: '/about', element: <About />},
-  {path: '/home', element: <Home /> }
+  {path: '/home', element: <Home /> },
+  {path: '/contactUs', element: <Contact />}
 ])
 
 const App = () => {

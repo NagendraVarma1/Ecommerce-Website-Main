@@ -17,6 +17,7 @@ const NavBar = (props) => {
                     <Nav.Link href='/home' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Home</Nav.Link>
                     <Nav.Link href='/' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Store</Nav.Link>
                     <Nav.Link href='/about' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>About</Nav.Link>
+                    <Nav.Link href='/contactUs' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Contact Us</Nav.Link>
                 </Nav>
             </Container>
             <Button variant='outline-primary' className='text-light' onClick={props.onCartClick}>Cart</Button>

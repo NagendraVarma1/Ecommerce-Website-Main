@@ -41,7 +41,7 @@ const Home = () => {
       <Container className="text-center">
         <h1 className="my-3">Tours</h1>
         {tours.map((tour) => (
-          <Row style={{borderBottom: '1px solid black', marginTop: '10px'}}>
+          <Row key={tour.city} style={{borderBottom: '1px solid black', marginTop: '10px'}}>
             <Col>
               <p style={{fontSize: 'medium', fontFamily: 'sans-serif'}}>{tour.date}</p>
             </Col>
