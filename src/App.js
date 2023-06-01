@@ -1,42 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import NavBar from "./Components/NavBar/NavBar";
 import ProductList from "./Components/ProductList/ProductList";
-import Footer from "./Components/Footer/Footer";
-import Cart from "./Components/Cart/Cart";
-import CartProvider from "./Store/CartContext/CartProvider";
 import About from "./Components/About/About";
 import Home from "./Components/Home/Home";
 import Contact from "./Components/Contact/Contact";
+import RootLayout from "./Components/Pages/Root";
+import WomenWare from "./Components/Pages/WomenWare";
+import KidWare from "./Components/Pages/KidWare";
+import Shoes from "./Components/Pages/Shoes";
 
 const router = createBrowserRouter([
-  {path: '/', element: <ProductList />},
-  {path: '/about', element: <About />},
-  {path: '/home', element: <Home /> },
-  {path: '/contactUs', element: <Contact />}
-])
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <ProductList /> },
+      { path: "/about", element: <About /> },
+      { path: "/home", element: <Home /> },
+      { path: "/contactUs", element: <Contact /> },
+      {path: '/womenWare', element: <WomenWare />},
+      {path:'/kidWare', element: <KidWare />},
+      {path: '/shoes', element: <Shoes />}
+    ],
+  },
+]);
 
 const App = () => {
-
-  const [cartEnable, setCartEnable] = useState(false)
-
-
-  const cartEnableHandler = () => {
-    setCartEnable(true)
-  }
-
-  const cartCloseHandler = () => {
-    setCartEnable(false)
-  }
-
-  return (
-    <CartProvider>
-      {cartEnable && <Cart onCloseClick={cartCloseHandler}/>}
-      <NavBar onCartClick={cartEnableHandler} />
-      <RouterProvider router={router} />
-      <Footer />
-    </CartProvider>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;
