@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 
@@ -8,28 +9,39 @@ const Contact = () => {
 
   async function formSubmitHandler(event) {
     event.preventDefault();
-    
-      let name = nameInputRef.current.value;
-      let email = emailInputRef.current.value;
-      let phoneNumber = phoneInputRef.current.value;
 
-      let details = {
-        name,
-        email,
-        phoneNumber,
-      };
-      const response = await fetch('https://react-project-4e5e7-default-rtdb.firebaseio.com/details.json', {
-        method: 'POST',
-        body: JSON.stringify(details),
-        headers : {
-            "Content-Type" : 'application/json'
-        }
-      });
-      await response.json();
+    let name = nameInputRef.current.value;
+    let email = emailInputRef.current.value;
+    let phoneNumber = phoneInputRef.current.value;
 
-      nameInputRef.current.value = "";
-      phoneInputRef.current.value = "";
-      emailInputRef.current.value = "";
+    let details = {
+      name,
+      email,
+      phoneNumber,
+    };
+    //   const response = await fetch('https://react-project-4e5e7-default-rtdb.firebaseio.com/details.json', {
+    //     method: 'POST',
+    //     body: JSON.stringify(details),
+    //     headers : {
+    //         "Content-Type" : 'application/json'
+    //     }
+    //   });
+    //   await response.json();
+
+    //This is another way to store data in the server using 'axios'.
+    //To use axios first we have to do 'npm install axios' and import it where it is needed.
+
+    const response = await axios.post(
+      "https://react-project-4e5e7-default-rtdb.firebaseio.com/details.json",
+      details
+    );
+
+    const data = response.data;
+    console.log(data);
+
+    nameInputRef.current.value = "";
+    phoneInputRef.current.value = "";
+    emailInputRef.current.value = "";
   }
   return (
     <Container
