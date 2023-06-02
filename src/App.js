@@ -8,6 +8,7 @@ import RootLayout from "./Components/Pages/Root";
 import WomenWare from "./Components/Pages/WomenWare";
 import KidWare from "./Components/Pages/KidWare";
 import Shoes from "./Components/Pages/Shoes";
+import ProductDetails from "./Components/Pages/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -15,12 +16,16 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <ProductList /> },
+      {path: '/:name', element: <ProductDetails />},
       { path: "/about", element: <About /> },
       { path: "/home", element: <Home /> },
       { path: "/contactUs", element: <Contact /> },
       {path: '/womenWare', element: <WomenWare />},
+      {path: '/womenWare/:name', element: <ProductDetails />},
       {path:'/kidWare', element: <KidWare />},
-      {path: '/shoes', element: <Shoes />}
+      {path:'/kidWare/:name', element: <ProductDetails />},
+      {path: '/shoes', element: <Shoes />},
+      {path: '/shoes/:name', element: <ProductDetails />},
     ],
   },
 ]);

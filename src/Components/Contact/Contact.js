@@ -44,10 +44,12 @@ const Contact = () => {
     emailInputRef.current.value = "";
   }
   return (
-    <Container
-      className="shadow-lg"
+    <Container>
+    <Container fluid
+      className="shadow-lg "
       style={{
-        width: "50%",
+        minWidth: '40%',
+        maxWidth: '60%',
         border: "2px solid black",
         borderRadius: "10px",
         marginTop: "50px",
@@ -70,6 +72,7 @@ const Contact = () => {
           <Button type="submit">Submit</Button>
         </div>
       </Form>
+    </Container>
     </Container>
   );
 };

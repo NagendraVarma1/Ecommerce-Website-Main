@@ -61,7 +61,7 @@ const KidWare = () => {
               {productsArr.map((product) => (
                 <li key={product.title} className="my-3 py-3">
                   <h2>{product.title}</h2>
-                  <Link to='/product-details'><img src={product.imageUrl} alt="Product" /></Link>
+                  <Link to={`/kidWare/${product.title}`}><img src={product.imageUrl} alt="Product" /></Link>
                   <Container
                     className="mt-3"
                     style={{
