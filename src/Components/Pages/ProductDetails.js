@@ -1,9 +1,8 @@
-import { useContext } from "react";
+
 import { Container } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const ProductDetails = () => {
-  const navigate = useNavigate();
 
   const dummyData = [
     {
