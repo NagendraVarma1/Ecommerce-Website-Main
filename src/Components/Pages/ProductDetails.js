@@ -1,10 +1,8 @@
 import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import AuthContext from "../../Store/AuthContext/auth-context";
 
 const ProductDetails = () => {
-  const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
 
   const dummyData = [
@@ -177,9 +175,6 @@ const ProductDetails = () => {
             <h1>No Product</h1>
         </Container>
     )
-  }
-  if(!authCtx.loggedIn){
-      navigate('/login')
   }
   return (
     <Container className="text-center">
