@@ -12,6 +12,9 @@ const NavBar = (props) => {
     cartCtx.cartItems.forEach((item) => {
         totalQuantity = totalQuantity + Number(item.quantity)
     })
+    const deleteTokenHandler = () => {
+        authCtx.logOut();
+    }
 
     return (
         <Navbar style={{position: 'sticky', top: '0'}} bg='dark' expand='sm' variant='dark' className='shadow-lg' >
@@ -22,10 +25,11 @@ const NavBar = (props) => {
                     <NavLink to='/about' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>About</NavLink>
                     {authCtx.loggedIn && <NavLink to='/contactUs' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Contact Us</NavLink>}
                     {!authCtx.loggedIn && <NavLink to='/login' className='mx-sm-1 mx-md-3 mx-lg-5 text-light'>Login</NavLink>}
+                    {authCtx.loggedIn && <NavLink to='/login' className='mx-sm-1 mx-md-3 mx-lg-5 text-light' onClick={deleteTokenHandler}>Logout</NavLink>}
                 </Nav>
             </Container>
-            <Button variant='outline-primary' className='text-light' onClick={props.onCartClick}>Cart</Button>
-            <h5 className='text-primary mx-2'>{totalQuantity}</h5>
+            {authCtx.loggedIn && <Button variant='outline-primary' className='text-light' onClick={props.onCartClick}>Cart</Button>}
+            {authCtx.loggedIn && <h5 className='text-primary mx-2'>{totalQuantity}</h5>}
         </Navbar>
     )
 }
