@@ -50,7 +50,7 @@ const Cart = (props) => {
 
               <Container
                 style={{
-                  width: "50%",
+                  width: "40%",
                   height: "20%",
                   display: " flex",
                   justifyContent: "space-between",

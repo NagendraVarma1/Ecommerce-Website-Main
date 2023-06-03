@@ -9,6 +9,7 @@ import WomenWare from "./Components/Pages/WomenWare";
 import KidWare from "./Components/Pages/KidWare";
 import Shoes from "./Components/Pages/Shoes";
 import ProductDetails from "./Components/Pages/ProductDetails";
+import Login from "./Components/Pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -16,21 +17,23 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     children: [
       { path: "/", element: <ProductList /> },
-      {path: '/:name', element: <ProductDetails />},
+      { path: "/:name", element: <ProductDetails /> },
       { path: "/about", element: <About /> },
       { path: "/home", element: <Home /> },
       { path: "/contactUs", element: <Contact /> },
-      {path: '/womenWare', element: <WomenWare />},
-      {path: '/womenWare/:name', element: <ProductDetails />},
-      {path:'/kidWare', element: <KidWare />},
-      {path:'/kidWare/:name', element: <ProductDetails />},
-      {path: '/shoes', element: <Shoes />},
-      {path: '/shoes/:name', element: <ProductDetails />},
+      { path: "/womenWare", element: <WomenWare /> },
+      { path: "/womenWare/:name", element: <ProductDetails /> },
+      { path: "/kidWare", element: <KidWare /> },
+      { path: "/kidWare/:name", element: <ProductDetails /> },
+      { path: "/shoes", element: <Shoes /> },
+      { path: "/shoes/:name", element: <ProductDetails /> },
+      { path: "/login", element: <Login />}
     ],
   },
 ]);
 
 const App = () => {
+  
   return <RouterProvider router={router} />;
 };
 

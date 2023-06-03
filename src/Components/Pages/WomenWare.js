@@ -36,7 +36,7 @@ const WomenWare = () => {
         
     
         {
-          title: "T-Shirt(Casual Wear)",
+          title: "T-Shirt(Women Casual Wear)",
     
           price: 299,
     

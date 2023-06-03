@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { Container } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import AuthContext from "../../Store/AuthContext/auth-context";
 
 const ProductDetails = () => {
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const dummyData = [
     {
       title: "Formal Shirt",
@@ -84,7 +89,7 @@ const ProductDetails = () => {
     },
 
     {
-      title: "T-Shirt(Casual Wear)",
+      title: "T-Shirt(Women Casual Wear)",
 
       price: 299,
 
@@ -163,6 +168,7 @@ const ProductDetails = () => {
     },
   ];
   const params = useParams();
+  console.log(params)
 
   const product = dummyData.find((data) => data.title === params.name);
   if (!product) {
@@ -171,6 +177,9 @@ const ProductDetails = () => {
             <h1>No Product</h1>
         </Container>
     )
+  }
+  if(!authCtx.loggedIn){
+      navigate('/login')
   }
   return (
     <Container className="text-center">
