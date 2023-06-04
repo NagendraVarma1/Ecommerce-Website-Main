@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import CartContext from "../../Store/CartContext/cart-context";
+import React from "react";
 import Header from "../Header/Header";
 import { Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const KidWare = () => {
     const productsArr = [
@@ -46,11 +46,14 @@ const KidWare = () => {
     
         
       ];
+      let updatedEmail;
+      const email = localStorage.getItem('email');
+      if(email) {
+        updatedEmail = email.replace('@', '').replace('.', '');
+      }
     
-      const cartCtx = useContext(CartContext);
-    
-      const cartItemHandler = (product) => {
-        cartCtx.addCartItems(product);
+      async function cartItemHandler(product) {
+       await axios.post(`https://crudcrud.com/api/688c6ac11fbe4f5d86b22993f50c6e2e/${updatedEmail}`, product)
       };
     
       return (

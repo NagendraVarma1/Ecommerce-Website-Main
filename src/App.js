@@ -12,6 +12,7 @@ import ProductDetails from "./Components/Pages/ProductDetails";
 import Login from "./Components/Pages/Login";
 import AuthContext from "./Store/AuthContext/auth-context";
 import Store from "./Components/Pages/Store";
+import Cart from "./Components/Cart/Cart";
 
 
 const App = () => {
@@ -34,7 +35,8 @@ const App = () => {
         { path: "/kidWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
         { path: "/shoes", element: authCtx.loggedIn ? <Shoes /> : <Login /> },
         { path: "/shoes/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
-        { path: "/login", element: <Login />}
+        { path: "/login", element: <Login />},
+        { path: '/cart', element: authCtx.loggedIn ? <Cart /> : <Login />}
       ],
     },
   ]);
