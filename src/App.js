@@ -27,7 +27,7 @@ const App = () => {
         { path: "/menWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
         { path: "/about", element: <About /> },
         { path: "/home", element: <Home /> },
-        { path: "/contactUs", element: <Contact /> },
+        { path: "/contactUs", element: authCtx.loggedIn ? <Contact /> : <Login /> },
         { path: "/womenWare", element: authCtx.loggedIn ? <WomenWare /> : <Login /> },
         { path: "/womenWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
         { path: "/kidWare", element: authCtx.loggedIn ? <KidWare /> : <Login /> },
