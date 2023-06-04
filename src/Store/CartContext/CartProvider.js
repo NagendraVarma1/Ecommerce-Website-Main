@@ -4,6 +4,12 @@ import CartContext from "./cart-context";
 const CartProvider = (props) => {
   const [cartItems, setCartItems] = useState([]);
 
+  const email = localStorage.getItem('email');
+  if(email) {
+    const updatedEmail = email.replace('@', '').replace('.', '');
+  }
+  
+
   const addCartItemsHandler = (item) => {
     const cartItemIndex = cartItems.findIndex(
       (cartItem) => cartItem.title === item.title
