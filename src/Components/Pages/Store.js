@@ -7,7 +7,7 @@ const Store = () => {
     return (
         <Container fluid className=" h-50 mt-5 shadow-lg">
         <Carousel >
-      <Carousel.Item style={{position: 'sticky', top: '30'}}>
+      <Carousel.Item>
         <img
           className="w-100"
           src={clothes}
