@@ -15,7 +15,7 @@ const Footer = () => {
               <h3>Shop</h3>
               <Row>
                 <NavLink
-                  to="/"
+                  to="/menWare"
                   style={{
                     fontWeight: "bold",
                     color: "black",

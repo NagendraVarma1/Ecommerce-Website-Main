@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ProductList from "./Components/ProductList/ProductList";
 import About from "./Components/About/About";
@@ -10,29 +10,34 @@ import KidWare from "./Components/Pages/KidWare";
 import Shoes from "./Components/Pages/Shoes";
 import ProductDetails from "./Components/Pages/ProductDetails";
 import Login from "./Components/Pages/Login";
+import AuthContext from "./Store/AuthContext/auth-context";
+import Store from "./Components/Pages/Store";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <RootLayout />,
-    children: [
-      { path: "/", element: <ProductList /> },
-      { path: "/:name", element: <ProductDetails /> },
-      { path: "/about", element: <About /> },
-      { path: "/home", element: <Home /> },
-      { path: "/contactUs", element: <Contact /> },
-      { path: "/womenWare", element: <WomenWare /> },
-      { path: "/womenWare/:name", element: <ProductDetails /> },
-      { path: "/kidWare", element: <KidWare /> },
-      { path: "/kidWare/:name", element: <ProductDetails /> },
-      { path: "/shoes", element: <Shoes /> },
-      { path: "/shoes/:name", element: <ProductDetails /> },
-      { path: "/login", element: <Login />}
-    ],
-  },
-]);
 
 const App = () => {
+  const authCtx = useContext(AuthContext);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        { path: "/", element: authCtx.loggedIn ? <Store/> : <Login /> },
+        { path: "/menWare", element: authCtx.loggedIn ? <ProductList /> : <Login /> },
+        { path: "/menWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
+        { path: "/about", element: <About /> },
+        { path: "/home", element: <Home /> },
+        { path: "/contactUs", element: <Contact /> },
+        { path: "/womenWare", element: authCtx.loggedIn ? <WomenWare /> : <Login /> },
+        { path: "/womenWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
+        { path: "/kidWare", element: authCtx.loggedIn ? <KidWare /> : <Login /> },
+        { path: "/kidWare/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
+        { path: "/shoes", element: authCtx.loggedIn ? <Shoes /> : <Login /> },
+        { path: "/shoes/:name", element: authCtx.loggedIn ? <ProductDetails /> : <Login /> },
+        { path: "/login", element: <Login />}
+      ],
+    },
+  ]);
   
   return <RouterProvider router={router} />;
 };
