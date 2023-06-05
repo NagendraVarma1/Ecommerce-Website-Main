@@ -54,7 +54,7 @@ const WomenWare = () => {
   }
 
   async function cartItemHandler(product) {
-    await axios.post(`https://crudcrud.com/api/688c6ac11fbe4f5d86b22993f50c6e2e/${updatedEmail}`, product)
+    await axios.post(`https://ecommerce-website-19771-default-rtdb.firebaseio.com//${updatedEmail}.json`, product)
   };
     
       return (

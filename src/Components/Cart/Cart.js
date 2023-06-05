@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import QuantityForm from "../QuantityForm/QuantityForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -19,20 +18,23 @@ const Cart = () => {
   async function fetchData() {
     setRemove(false)
     const response = await axios.get(
-      `https://crudcrud.com/api/688c6ac11fbe4f5d86b22993f50c6e2e/${updatedEmail}`
+      `https://ecommerce-website-19771-default-rtdb.firebaseio.com//${updatedEmail}.json`
     );
     const data = await response.data;
-    let allProducts;
+    
     if (data) {
-      allProducts = data.map((product) => ({
-        id: product._id,
-        title: product.title,
-        imageUrl: product.imageUrl,
-        price: product.price,
+      const allProducts = Object.keys(data).map((product) => ({
+        id: product,  //in product we will get the index of the item in array
+        title: data[product].title,
+        imageUrl: data[product].imageUrl,
+        price: data[product].price,
         quantity: 1
       }));
+      setAllCartProducts(allProducts)
     }
-    setAllCartProducts(allProducts)
+    else {
+      setAllCartProducts([])
+    }
   }
 
   useEffect(() => {
@@ -43,7 +45,7 @@ const Cart = () => {
   }, [remove]);
 
   async function removeItemHandler (item) {
-    await axios.delete(`https://crudcrud.com/api/688c6ac11fbe4f5d86b22993f50c6e2e/${updatedEmail}/${item.id}`)
+    await axios.delete(`https://ecommerce-website-19771-default-rtdb.firebaseio.com//${updatedEmail}/${item.id}.json`)
     setRemove(true)
   };
 
@@ -64,13 +66,13 @@ const Cart = () => {
   let totalAmount = 0;
 
   return (
-      <Container className="mt-3">
+      <Container className="mt-3" style={{border: '2px solid black', width: '60%'}}>
       <Row>
-        <Container style={{ display: "flex", justifyContent: "space-around" }}>
+        <Container style={{ display: "flex", justifyContent: "space-around" , padding: '10px'}}>
           <h2 >Cart</h2>
           <Button onClick={cartCloseHandler}>x</Button>
         </Container>
-        <ul className="list-unstyle">
+        <ul className="list-unstyle" style={{}}>
           {allCartProducts.map((item) => {
             totalAmount =
               totalAmount + Number(item.price) * Number(item.quantity);
@@ -81,6 +83,7 @@ const Cart = () => {
                   display: "flex",
                   borderTop: "1px Solid black",
                   borderBottom: "1px Solid black",
+                  paddingLeft: '30px',
                 }}
                 className="m-3"
               >
@@ -100,13 +103,13 @@ const Cart = () => {
 
                 <Container
                   style={{
-                    width: "40%",
+                    width: "auto",
                     height: "20%",
-                    display: " flex",
-                    justifyContent: "space-between",
+                    marginLeft: '40px',
+                    marginRight: '20px',
                   }}
                 >
-                  <QuantityForm itemQuantity={item.quantity} />
+                  {/* <QuantityForm itemQuantity={item.quantity} /> */}
                   <Button
                     variant="warning"
                     className="my-3"
@@ -122,10 +125,10 @@ const Cart = () => {
         </ul>
       </Row>
       <Container style={{ textAlign: "right" }}>
-        <h2 style={{ fontSize: "medium" }}>Total Amount: {totalAmount}</h2>
+        <h2 style={{ fontSize: "large", marginBottom: '30px' }}>Total Amount: {totalAmount}</h2>
       </Container>
 
-      <Button style={{ marginLeft: "45%" }}>PURCHASE</Button>
+      <Button style={{ marginLeft: "45%", marginBottom: '10px' }}>PURCHASE</Button>
       
       </Container>
   );
